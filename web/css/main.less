@@ -1,0 +1,67 @@
+@left-width: 825px;
+@right-width: 424px;
+@total-width: @left-width + @right-width;
+
+@import url(http://fonts.googleapis.com/css?family=Handlee);
+
+.rounded-corners (@radius: 5px) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+html, input, select, button{
+    font-family: 'Handlee', cursive;
+}
+
+html{
+    background: rgba(139,197,228,0.78);
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+#pitch-container{
+    float: left;
+    width: @left-width;
+    margin-left: 200px;
+}
+
+#players_panel{
+    margin-left: @left-width + 165;
+    margin-right: @right-width - 125;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    .rounded-corners;
+    background-color: #faebd7;
+}
+
+.playerName{
+    margin-bottom: 15px;
+}
+
+audio{
+    display: block;
+}
+
+.newPlayerButton{
+    display: block;
+}
+
+.topPanel{
+    margin-bottom: 10px;
+}
+
+.playerNumber{
+    width: 40px;
+}
+
+.numberLabel{
+    padding-left: 5px;
+}
+
+input, button {
+    .rounded-corners;
+}

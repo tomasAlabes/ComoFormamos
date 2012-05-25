@@ -1,3 +1,10 @@
+# IDEA
+*.iml
+*.ipr
+*.idea
+
+out/
+
 *.class
 
 # Package Files #
