@@ -35,14 +35,15 @@ var createPlayerSVG = function() {
 $(function () {
     paper = Raphael('canvas_container', '798.28351', '904.6944');
     loadPitch(paper);
-    paper.rect(0,0,150,700,10);
-    var optionsSet = [];
+    optionsSet = paper.set();
+    var paletteBorder = paper.rect(0,0,150,700,10);
+    optionsSet.push(paletteBorder);
     for(var i=0; i<5; i++){
         var playerOption = paper.circle(75,50+i*120, 25).attr({fill:"red"});
         var playerOptionText = paper.text(75,50+i*120+45, optionsNames[i]);
         playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee'});
         var optionSet = paper.set([playerOption, playerOptionText]);
-        optionsSet.push(playerOptionText);
+        optionsSet.push(optionSet);
         setDragAndDrop(optionSet, false);
     }
     $('#newPlayerButton').removeAttr("disabled");
@@ -141,7 +142,38 @@ $(function () {
         },
         events:{
             "click #newPlayerButton" : "createNewPlayer",
+            "click #exportButton" : "exportToImage",
             "change #pitchType" : "pitchSizeChanged"
+        },
+
+        exportToImage: function(evt){
+            optionsSet.forEach(function(element){
+                element.hide();
+            });
+            var svg = $('#canvas_container').html();
+
+            var canvas = document.createElement('canvas');
+            canvas.setAttribute('width', svg.offsetWidth);
+            canvas.setAttribute('height', svg.offsetHeight);
+            canvas.setAttribute(
+                'style',
+                'position: absolute; ' +
+                    'top: ' + (-svg.offsetHeight * 2) + 'px;' +
+                    'left: ' + (-svg.offsetWidth * 2) + 'px;');
+            //document.body.appendChild(canvas);
+            canvg(canvas, svg);
+            var imgData = canvas.toDataURL("image/png");
+            // Populate img tag
+            //var img = document.createElement('img');
+            //img.src = imgData;
+            //document.getElementById('imageContainer').appendChild(img);
+            // Download image
+
+            $('#downloadImageLink').attr("href", imgData).show();
+            //window.location = imgData/*.replace("image/png", "image/octet-stream")*/;
+            optionsSet.forEach(function(element){
+                element.show();
+            });
         },
 
         pitchSizeChanged : function(){
