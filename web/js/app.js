@@ -202,15 +202,17 @@ $(function () {
         },
 
         createNewModel: function(player){
-            var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") + 15, playerCounter++);
-            playerNumber.attr({"font-size" : 14});
-            player.push(playerNumber);
-            var playerModel = new Player({name: player.items[1].attr("text"), number:playerCounter, svgText:player.items[1], svgNumber: player.items[2]});
-            playerModel.set({"playerId": playerModel.cid});
-            team.add(playerModel);
-            modelViewMap[playerModel.get("playerId")] = player;
-            var backboneView = new PlayerView({model: playerModel});
-            $('#players_panel').append(backboneView.render().el);
+            if (team.length >= selectedTeamSize) {
+                var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") + 15, playerCounter++);
+                playerNumber.attr({"font-size":14});
+                player.push(playerNumber);
+                var playerModel = new Player({name:player.items[1].attr("text"), number:playerCounter, svgText:player.items[1], svgNumber:player.items[2]});
+                playerModel.set({"playerId":playerModel.cid});
+                team.add(playerModel);
+                modelViewMap[playerModel.get("playerId")] = player;
+                var backboneView = new PlayerView({model:playerModel});
+                $('#players_panel').append(backboneView.render().el);
+            }
         }
 
     });
