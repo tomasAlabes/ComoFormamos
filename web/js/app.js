@@ -4,6 +4,8 @@ var defaultName = "NewPlayer";
 var selectedTeamSize = 5;
 var pitchXCoordinate = 200;
 var optionsNames = ["Rústico", "Mágico", "Hacha", "Pecho frío", "Todo terreno"];
+var IMGS_SUFFIX = "media/imgs/";
+var optionsImgs = [IMGS_SUFFIX+"rustico.jpg", IMGS_SUFFIX+"magico.jpg", IMGS_SUFFIX+"mini_hacha.png", IMGS_SUFFIX+"pechoFrio.png", IMGS_SUFFIX+"todoTerreno.jpg"];
 
 var setDragAndDrop = function(compSet, isEditing) {
     if(isEditing){
@@ -39,10 +41,10 @@ $(function () {
     var paletteBorder = paper.rect(0,0,150,700,10);
     optionsSet.push(paletteBorder);
     for(var i=0; i<5; i++){
-        var playerOption = paper.circle(75,50+i*120, 25).attr({fill:"red"});
+        var image = paper.image(optionsImgs[i], 50, 35+i*120, 52, 52);
         var playerOptionText = paper.text(75,50+i*120+45, optionsNames[i]);
         playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee'});
-        var optionSet = paper.set([playerOption, playerOptionText]);
+        var optionSet = paper.set([image, playerOptionText]);
         optionsSet.push(optionSet);
         setDragAndDrop(optionSet, false);
     }
@@ -200,7 +202,7 @@ $(function () {
         },
 
         createNewModel: function(player){
-            var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") - 45, playerCounter++);
+            var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") + 15, playerCounter++);
             playerNumber.attr({"font-size" : 14});
             player.push(playerNumber);
             var playerModel = new Player({name: player.items[1].attr("text"), number:playerCounter, svgText:player.items[1], svgNumber: player.items[2]});
