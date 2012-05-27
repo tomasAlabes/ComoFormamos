@@ -5,7 +5,12 @@ var selectedTeamSize = 5;
 var pitchXCoordinate = 200;
 var optionsNames = ["Rústico", "Mágico", "Hacha", "Pecho frío", "Todo terreno"];
 var IMGS_SUFFIX = "media/imgs/";
-var optionsImgs = [IMGS_SUFFIX+"rustico.jpg", IMGS_SUFFIX+"magico.jpg", IMGS_SUFFIX+"mini_hacha.png", IMGS_SUFFIX+"pechoFrio.png", IMGS_SUFFIX+"todoTerreno.jpg"];
+var optionsImgs =
+    [IMGS_SUFFIX + "rustico.png",
+    IMGS_SUFFIX + "magico.png",
+    IMGS_SUFFIX + "mini_hacha.png",
+    IMGS_SUFFIX + "pechoFrio.png",
+    IMGS_SUFFIX + "todoTerreno.png"];
 
 var setDragAndDrop = function(compSet, isEditing) {
     if(isEditing){
@@ -43,7 +48,7 @@ $(function () {
     for(var i=0; i<5; i++){
         var image = paper.image(optionsImgs[i], 50, 35+i*120, 52, 52);
         var playerOptionText = paper.text(75,50+i*120+45, optionsNames[i]);
-        playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee'});
+        playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee', fill: "white"});
         var optionSet = paper.set([image, playerOptionText]);
         optionsSet.push(optionSet);
         setDragAndDrop(optionSet, false);
@@ -171,8 +176,8 @@ $(function () {
             //document.getElementById('imageContainer').appendChild(img);
             // Download image
 
-            $('#downloadImageLink').attr("href", imgData).show();
-            //window.location = imgData/*.replace("image/png", "image/octet-stream")*/;
+            //$('#downloadImageLink').attr("href", imgData).show();
+            window.location = imgData/*.replace("image/png", "image/octet-stream")*/;
             optionsSet.forEach(function(element){
                 element.show();
             });
@@ -202,16 +207,20 @@ $(function () {
         },
 
         createNewModel: function(player){
-            if (team.length >= selectedTeamSize) {
+            if (team.length < selectedTeamSize) {
                 var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") + 15, playerCounter++);
                 playerNumber.attr({"font-size":14});
                 player.push(playerNumber);
+                player.items[1].attr({"fill":"black"});
                 var playerModel = new Player({name:player.items[1].attr("text"), number:playerCounter, svgText:player.items[1], svgNumber:player.items[2]});
                 playerModel.set({"playerId":playerModel.cid});
                 team.add(playerModel);
                 modelViewMap[playerModel.get("playerId")] = player;
                 var backboneView = new PlayerView({model:playerModel});
                 $('#players_panel').append(backboneView.render().el);
+            }else{
+                player.remove();
+                player.clear();
             }
         }
 
