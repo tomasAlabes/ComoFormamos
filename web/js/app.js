@@ -19,20 +19,23 @@ var createPlayerSVG = function() {
 
 $(function () {
     paper = Raphael('canvas_container', '598.28351', '904.6944');
-    loadPitch(paper);
+    pitch = loadPitch(paper);
     optionsSet = paper.set();
-    var paletteBorder = paper.rect(0,0,120,700,10);
+    var paletteBorder = paper.rect(0,0,120,pitch.getBBox().height,10);
     optionsSet.push(paletteBorder);
-    var i = 0;
+    var i = 1;
+    var paletteYOffset = 35;
     for(var optionName in paletteOptions){
-        var image = paper.path(paletteOptions[optionName]).attr({"fill":"black"});
-        image.transform("...S2,T50," + (25+i*100));
-        var playerOptionText = paper.text(55,50+i*120, optionName);
+        var image = paper.path(paletteOptions[optionName]).attr({"fill":"white"});
+        image.transform("S1.5T50," + paletteYOffset);
+        var imageTextTopMargin = 5;
+        var playerOptionText = paper.text(65, paletteYOffset + image.getBBox().height + imageTextTopMargin, optionName);
         playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee', fill: "white"});
         var optionSet = paper.set([image, playerOptionText]);
         optionsSet.push(optionSet);
         MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(optionSet);
         i++;
+        paletteYOffset+= 80;
     }
     $('#newPlayerButton').removeAttr("disabled");
 
@@ -68,7 +71,7 @@ $(function () {
         template:_.template($('#player-template').html()),
 
         events:{
-            "click .deleteButton" : "removePlayer",
+            "click .deleteImg" : "removePlayer",
             "change .playerName" : "updatePlayerName",
             "change .playerNumber" : "updatePlayerNumber"
         },
@@ -177,21 +180,25 @@ $(function () {
             team.add(playerModel);
             modelViewMap[playerModel.get("playerId")] = raphaelPlayer;
             var backboneView = new PlayerView({model: playerModel});
-            $('#players_panel').append(backboneView.render().el);
+            $('#playersCreated').append(backboneView.render().el);
         },
 
         createNewModel: function(player){
             if (team.length < selectedTeamSize) {
-                var playerNumber = paper.text(player.items[1].attr("x"), player.items[1].attr("y") + 15, playerCounter++);
+                var item = player.items[1];
+                var itemBBox = item.getBBox();
+                var itemX = item.attr("x");
+                var itemY = item.attr("y");
+                var playerNumber = paper.text(item.matrix.x(itemX, itemY), item.matrix.y(itemX, itemY) + 15, playerCounter++);
                 playerNumber.attr({"font-size":14});
                 player.push(playerNumber);
-                player.items[1].attr({"fill":"black"});
-                var playerModel = new Player({name:player.items[1].attr("text"), number:playerCounter, svgText:player.items[1], svgNumber:player.items[2]});
+                item.attr({"fill":"black"});
+                var playerModel = new Player({name:item.attr("text"), number:playerCounter, svgText:item, svgNumber:player.items[2]});
                 playerModel.set({"playerId":playerModel.cid});
                 team.add(playerModel);
                 modelViewMap[playerModel.get("playerId")] = player;
                 var backboneView = new PlayerView({model:playerModel});
-                $('#players_panel').append(backboneView.render().el);
+                $('#playersCreated').append(backboneView.render().el);
             }else{
                 player.remove();
                 player.clear();

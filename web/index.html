@@ -28,44 +28,46 @@
     <script type="text/javascript" src="js/app.js"></script>
 
 </head>
+
 <body>
-    <h1 class="large">Como formamos?</h1>
+    <h1>Como formamos?</h1>
 
-    <div id="container" class="container">
-        <div id="pitch-container" class="span-17">
-            <div id="canvas_container"></div>
-            <div id="image_container" hidden></div>
+    <div id="allContainer" class="container">
+
+        <div id="editorContainer" class="span-24">
+
+            <div id="canvas_container" class="span-15"></div>
+
+            <div id="players_panel" class="span-8 last">
+
+                <div id="top" class="span-8">
+                    <label id="pitchTypeLabel" for="pitchType" class="span-7">
+                        Equipo
+                        <select id="pitchType" name="Equipo">
+                            <option value="5">5 jugadores</option>
+                            <option value="7">7 jugadores</option>
+                            <option value="9">9 jugadores</option>
+                            <option value="11">11 jugadores</option>
+                        </select>
+                    </label>
+
+                    <button id="newPlayerButton" type="button">Nuevo Jugador</button>
+                </div>
+
+                <div id="playersCreated" class="span-8">
+                    <script type="text/template" id="player-template">
+                        <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>"
+                                     class="span-4">
+                        <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>"
+                                       class="span-2" type="number">
+                        <img data-modelid="<%= playerId%>" class="deleteImg" src="media/imgs/delete.png" alt="Delete" height="16" width="16"/>
+                    </script>
+                </div>
+
+                <button id="exportButton" type="button">Guardar como imagen</button>
+            </div>
         </div>
 
-        <div id="players_panel" class="span-7 last">
-
-            <div id="top" class="span-7">
-                <label id="pitchTypeLabel" for="pitchType" class="span-7">
-                    Equipo
-                    <select id="pitchType" name="Equipo">
-                        <option value="5">5 jugadores</option>
-                        <option value="7">7 jugadores</option>
-                        <option value="9">9 jugadores</option>
-                        <option value="11">11 jugadores</option>
-                    </select>
-                </label>
-
-                <button id="newPlayerButton" type="button">Nuevo Jugador</button>
-            </div>
-
-            <div id="playersCreated" class="span-7">
-                <script type="text/template" id="player-template">
-                    <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>"
-                                 class="text span-4" type="text">
-                    <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>"
-                                   class="text span-2" type="number">
-                    <button data-modelid="<%= playerId%>" class="span-1 last">X</button>
-                </script>
-            </div>
-
-
-            <button id="exportButton" type="button">Guardar a imagen</button>
-        </div>
         <div id="song" class="prepend-17 span-7 last">
             <audio id="songs" controls>
                 <source src="media/audio/woohu.mp3" type="audio/mp3"/>
@@ -77,6 +79,7 @@
         <div class="span-24">
             <img src="media/imgs/under-construction.gif" alt="Under Construction" id="underConstructionImg">
         </div>
+
     </div>
 </body>
 </html>

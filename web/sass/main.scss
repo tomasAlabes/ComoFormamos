@@ -1,41 +1,43 @@
-//$import url(http://fonts.googleapis.com/css?family=Handlee);
+@import url(http://fonts.googleapis.com/css?family=Handlee);
 
-@mixin rounded-corners($radius: 5px) {
-    border-radius: $radius;
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
+@mixin rounded-corners($radius: 5px){
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
 }
 
-html, input, select, button{
-    font-family: 'Handlee', cursive;
+html, input, select, button {
+  font-family: 'Handlee', cursive;
 }
 
-html{
-    background-image: url("../media/background/blackboard.jpeg");
+html {
+  background-image: url("../media/background/blackboard.jpeg");
 }
 
-h1{
-    text-align: center;
-    font-size: 50px;
-    color: white;
+h1 {
+  font-family: 'Handlee', cursive;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  margin-top: 20px;
 }
 
-#players_panel{
-    @include rounded-corners;
-    border-color: white;
-    border-style: solid;
-    border-width: 1px;
-    color: white;
+#players_panel {
+  @include rounded-corners;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
 }
 
 input, button {
-    @include rounded-corners;
+  @include rounded-corners;
 }
 
-#underConstructionImg{
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    width: 185px;
-    height: 130px;
+#underConstructionImg {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  width: 185px;
+  height: 130px;
 }

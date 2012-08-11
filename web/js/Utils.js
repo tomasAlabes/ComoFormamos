@@ -13,7 +13,8 @@ var MyRaphaelUtils = {
         this.oy = 0;
 
         var newPaletteObj = this.clone();
-
+        optionsSet.exclude(this);
+        optionsSet.push(newPaletteObj);
         MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(newPaletteObj);
 
         this.animate({"opacity":.5}, 500);
@@ -34,21 +35,21 @@ var MyRaphaelUtils = {
     },
 
     paletteUp: function(){
-//        if(!MyRaphaelUtils.isInsideCanvas(this)){
-//            this.remove();
-//        }else{
+        if(!MyRaphaelUtils.isInsideCanvas(this)){
+            this.remove();
+        }else{
             //Giving the new D&D behaviour
             this.undrag();
             MyRaphaelUtils.addDragAndDropCapabilityToSet(this);
             this.animate({"opacity":1}, 500);
             eve("playerDropped", this, this);
-//        }
+        }
     },
 
         up: function () {
-//            if(!MyRaphaelUtils.isInsideCanvas(this)){
-//                this.animate({transform:'...T' + (-this.ox) + ',' + (-this.oy)}, 1000, "bounce");
-//            }
+            if(!MyRaphaelUtils.isInsideCanvas(this)){
+                this.animate({transform:'...T' + (-this.ox) + ',' + (-this.oy)}, 1000, "bounce");
+            }
             this.animate({"opacity": 1}, 500);
 
         },
@@ -57,8 +58,8 @@ var MyRaphaelUtils = {
             var canvasBBox = pitch.getBBox();
             var objectBBox = obj.getBBox();
             var objectPartiallyOutside = !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y2) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y2);
-            //var elementsUnderPoint = paper.getElementsByPoint(event.clientX, event.clientY);
-            //var objectUnderObject = elementsUnderPoint.length > 2; // Me and canvas
+            var elementsUnderPoint = paper.getElementsByPoint(event.clientX, event.clientY);
+            var objectUnderObject = elementsUnderPoint.length > 2; // Me and canvas
             return !(objectPartiallyOutside/* || objectUnderObject*/);
         },
 

@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Handlee);
 /* line 9, ../sass/main.scss */
 html, input, select, button {
   font-family: 'Handlee', cursive;
@@ -10,12 +11,14 @@ html {
 
 /* line 17, ../sass/main.scss */
 h1 {
+  font-family: 'Handlee', cursive;
   text-align: center;
   font-size: 50px;
   color: white;
+  margin-top: 20px;
 }
 
-/* line 23, ../sass/main.scss */
+/* line 25, ../sass/main.scss */
 #players_panel {
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -26,14 +29,14 @@ h1 {
   color: white;
 }
 
-/* line 31, ../sass/main.scss */
+/* line 33, ../sass/main.scss */
 input, button {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
 }
 
-/* line 35, ../sass/main.scss */
+/* line 37, ../sass/main.scss */
 #underConstructionImg {
   position: fixed;
   right: 0px;
