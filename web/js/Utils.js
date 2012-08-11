@@ -1,50 +1,73 @@
 var MyRaphaelUtils = {
-    editorStartAll:function () {
-        // storing original coordinates
-        for (var i in this.items) {
-            try {
-                this.items[i].attr({opacity:0.5});
-            } catch (ex) {
-            }
-            if (this.items[i].type == "path") {
-                this.items[i].ox = this.items[i].getBBox().x;
-                this.items[i].oy = this.items[i].getBBox().y;
-            }
-            else {
-                this.items[i].ox = this.items[i].attr("cx") || this.items[i].attr("x");
-                this.items[i].oy = this.items[i].attr("cy") || this.items[i].attr("y");
-            }
-        }
+    start:function () {
+        // keep the relative coords at the start of the drag
+        this.ox = 0;
+        this.oy = 0;
+        // animate attributes to a "being dragged" state
+        this.animate({"opacity":.5}, 500);
     },
 
-    editorMoveAll:function (dx, dy) {
-        for (var i in this.items) {
-            if (this.items[i].attr("cx")) { // ellipse
-                this.items[i].attr({cx: this.items[i].ox + dx, cy: this.items[i].oy + dy});
-            } else if (this.items[i].attr("x")) { //circle
-                this.items[i].attr({x: this.items[i].ox + dx, y: this.items[i].oy + dy});
-            } else { // path
-                this.items[i].translate(this.items[i].ox - this.items[i].getBBox().x + dx, this.items[i].oy - this.items[i].getBBox().y + dy);
-            }
-        }
+    paletteStart:function () {
+        // keep the relative coords at the start of the drag
+        this.ox = 0;
+        this.oy = 0;
+
+        var newPaletteObj = this.clone();
+
+        MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(newPaletteObj);
+
+        this.animate({"opacity":.5}, 500);
     },
 
-    editorUpAll:function (evt) {
-        if (evt.clientX > 400  && evt.clientY > 0) {
-            for (var i in this.items) {
-                this.items[i].attr({opacity:1});
-            }
-        }else{
-            eve("playerDroppedOutOfRange", this, this);
-        }
+    move: function (dx, dy) {
+        // calculate translation coords
+        var new_x = dx - this.ox;
+        var new_y = dy - this.oy;
+        // translate the obj
+        // Transform will NOT transform the element itself, but it will transform the element's coordinate system.
+        // "changing the transform attribute won't change the shape dimensions or position, but it will change the shape's coordinate system"
+        // http://cancerbero.vacau.com/raphaeltut/
+        this.transform('...T' + new_x + ',' + new_y);
+        // save the new values for future drags
+        this.ox = dx;
+        this.oy = dy;
     },
 
-    optionsUpAll:function (evt) {
-        if (evt.clientX > 400 && evt.clientY > 0) {
-            for (var i in this.items) {
-                this.items[i].attr({opacity:1});
-            }
+    paletteUp: function(){
+//        if(!MyRaphaelUtils.isInsideCanvas(this)){
+//            this.remove();
+//        }else{
+            //Giving the new D&D behaviour
+            this.undrag();
+            MyRaphaelUtils.addDragAndDropCapabilityToSet(this);
+            this.animate({"opacity":1}, 500);
             eve("playerDropped", this, this);
+//        }
+    },
+
+        up: function () {
+//            if(!MyRaphaelUtils.isInsideCanvas(this)){
+//                this.animate({transform:'...T' + (-this.ox) + ',' + (-this.oy)}, 1000, "bounce");
+//            }
+            this.animate({"opacity": 1}, 500);
+
+        },
+
+        isInsideCanvas: function(obj){
+            var canvasBBox = pitch.getBBox();
+            var objectBBox = obj.getBBox();
+            var objectPartiallyOutside = !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y2) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y2);
+            //var elementsUnderPoint = paper.getElementsByPoint(event.clientX, event.clientY);
+            //var objectUnderObject = elementsUnderPoint.length > 2; // Me and canvas
+            return !(objectPartiallyOutside/* || objectUnderObject*/);
+        },
+
+
+        addDragAndDropCapabilityToSet: function(compSet) {
+            compSet.drag(this.move, this.start, this.up, compSet, compSet, compSet);
+        },
+
+        addDragAndDropCapabilityToPaletteOption:function (compSet) {
+            compSet.drag(this.move, this.paletteStart, this.paletteUp, compSet, compSet, compSet);
         }
-    }
 };

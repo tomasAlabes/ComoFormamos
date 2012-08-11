@@ -11,3 +11,7 @@ out/
 *.jar
 *.war
 *.ear
+
+*.DS_Store
+web/sass/.DS_Store
+web/.sass-cache/

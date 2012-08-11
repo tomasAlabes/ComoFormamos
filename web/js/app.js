@@ -1,30 +1,8 @@
 var modelViewMap = []; //Map <ModelId, View> (< Backbone model id, Raphael set >
 var playerCounter = 0;
-var defaultName = "NewPlayer";
+var defaultName = "Nuevo jugador";
 var selectedTeamSize = 5;
 var pitchXCoordinate = 200;
-var optionsNames = ["Rústico", "Mágico", "Hacha", "Pecho frío", "Todo terreno"];
-var IMGS_SUFFIX = "media/imgs/";
-var optionsImgs =
-    [IMGS_SUFFIX + "rustico.png",
-    IMGS_SUFFIX + "magico.png",
-    IMGS_SUFFIX + "mini_hacha.png",
-    IMGS_SUFFIX + "pechoFrio.png",
-    IMGS_SUFFIX + "todoTerreno.png"];
-
-var setDragAndDrop = function(compSet, isEditing) {
-    if(isEditing){
-        compSet.drag(MyRaphaelUtils.editorMoveAll, MyRaphaelUtils.editorStartAll, MyRaphaelUtils.editorUpAll, compSet, compSet, compSet);
-    }else{
-        var clone_handler = function() {
-            var x = compSet.clone();
-            x.drag(MyRaphaelUtils.editorMoveAll, MyRaphaelUtils.editorStartAll, MyRaphaelUtils.editorUpAll, x, x, x);
-            eve.once("drag.end." + x.items[0].id, MyRaphaelUtils.optionsUpAll);
-            eve.once("drag.end." + x.items[1].id, MyRaphaelUtils.optionsUpAll);
-        };
-        compSet.mousemove(clone_handler);
-    }
-};
 
 var createPlayerSVG = function() {
     playerCounter++;
@@ -35,23 +13,26 @@ var createPlayerSVG = function() {
     var playerNumber = paper.text(pitchXCoordinate + 100, 100, playerCounter);
     playerNumber.attr({"font-size" : 14});
     var player = paper.set([playerFigure, playerText, playerNumber]);
-    setDragAndDrop(player, true);
+    MyRaphaelUtils.addDragAndDropCapabilityToSet(player);
     return player;
 };
 
 $(function () {
-    paper = Raphael('canvas_container', '798.28351', '904.6944');
+    paper = Raphael('canvas_container', '598.28351', '904.6944');
     loadPitch(paper);
     optionsSet = paper.set();
-    var paletteBorder = paper.rect(0,0,150,700,10);
+    var paletteBorder = paper.rect(0,0,120,700,10);
     optionsSet.push(paletteBorder);
-    for(var i=0; i<5; i++){
-        var image = paper.image(optionsImgs[i], 50, 35+i*120, 52, 52);
-        var playerOptionText = paper.text(75,50+i*120+45, optionsNames[i]);
+    var i = 0;
+    for(var optionName in paletteOptions){
+        var image = paper.path(paletteOptions[optionName]).attr({"fill":"black"});
+        image.transform("...S2,T50," + (25+i*100));
+        var playerOptionText = paper.text(55,50+i*120, optionName);
         playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee', fill: "white"});
         var optionSet = paper.set([image, playerOptionText]);
         optionsSet.push(optionSet);
-        setDragAndDrop(optionSet, false);
+        MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(optionSet);
+        i++;
     }
     $('#newPlayerButton').removeAttr("disabled");
 
@@ -170,13 +151,6 @@ $(function () {
             //document.body.appendChild(canvas);
             canvg(canvas, svg);
             var imgData = canvas.toDataURL("image/png");
-            // Populate img tag
-            //var img = document.createElement('img');
-            //img.src = imgData;
-            //document.getElementById('imageContainer').appendChild(img);
-            // Download image
-
-            //$('#downloadImageLink').attr("href", imgData).show();
             window.location = imgData/*.replace("image/png", "image/octet-stream")*/;
             optionsSet.forEach(function(element){
                 element.show();

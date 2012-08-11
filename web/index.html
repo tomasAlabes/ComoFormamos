@@ -4,63 +4,79 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <title>Como formamos?</title>
-    <link rel="stylesheet/less" type="text/css" href="css/main.less">
+
+    <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]>
+        <link rel="stylesheet/css" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/partials/_base.css">
 
     <script type="text/javascript" src="vendors/jquery-1.7.js"></script>
     <script type="text/javascript" src="vendors/underscore.js"></script>
     <script type="text/javascript" src="vendors/backbone.js"></script>
     <script type="text/javascript" src="vendors/raphael.js"></script>
-    <script type="text/javascript" src="vendors/less-1.3.0.min.js"></script>
+
     <script type="text/javascript" src="vendors/rgbcolor.js"></script>
     <script type="text/javascript" src="vendors/canvg.js"></script>
     <!--<script type="text/javascript" src="vendors/modernizr.js"></script>-->
     <script type="text/javascript" src="js/raphaelImgs/pitch.js"></script>
+    <script type="text/javascript" src="js/raphaelImgs/options.js"></script>
     <script type="text/javascript" src="js/Utils.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 
 </head>
 <body>
-    <h1>Como formamos?</h1>
-    <div id="pitch-container">
-        <div id="canvas_container"></div>
-        <div id="image_container" hidden ></div>
-    </div>
+    <h1 class="large">Como formamos?</h1>
 
-    <div id="players_panel">
-
-        <div id="top" class="topPanel">
-            <label id="pitchTypeLabel" for="pitchType">
-                <select id="pitchType" name="Team size">
-                    <option value="5">5 players</option>
-                    <option value="7">7 players</option>
-                    <option value="9">9 players</option>
-                    <option value="11">11 players</option>
-                </select>
-            </label>
-
-            <button id="newPlayerButton" type="button">New Player</button>
+    <div id="container" class="container">
+        <div id="pitch-container" class="span-17">
+            <div id="canvas_container"></div>
+            <div id="image_container" hidden></div>
         </div>
-        <script type="text/template" id="player-template">
-            <label for="name<%= playerId%>" class="nameLabel">
-                Name: <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>" class="playerName" type="text">
-            </label>
-            <label for="number<%= playerId%>" class="numberLabel">
-                Number: <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>" class="playerNumber" type="number">
-            </label>
-            <button data-modelid="<%= playerId%>" class="deleteButton">X</button>
-        </script>
+
+        <div id="players_panel" class="span-7 last">
+
+            <div id="top" class="span-7">
+                <label id="pitchTypeLabel" for="pitchType" class="span-7">
+                    Equipo
+                    <select id="pitchType" name="Equipo">
+                        <option value="5">5 jugadores</option>
+                        <option value="7">7 jugadores</option>
+                        <option value="9">9 jugadores</option>
+                        <option value="11">11 jugadores</option>
+                    </select>
+                </label>
+
+                <button id="newPlayerButton" type="button">Nuevo Jugador</button>
+            </div>
+
+            <div id="playersCreated" class="span-7">
+                <script type="text/template" id="player-template">
+                    <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>"
+                                 class="text span-4" type="text">
+                    <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>"
+                                   class="text span-2" type="number">
+                    <button data-modelid="<%= playerId%>" class="span-1 last">X</button>
+                </script>
+            </div>
+
+
+            <button id="exportButton" type="button">Guardar a imagen</button>
+        </div>
+        <div id="song" class="prepend-17 span-7 last">
+            <audio id="songs" controls>
+                <source src="media/audio/woohu.mp3" type="audio/mp3"/>
+                <source src="media/audio/Chumbawamba.mp3" type="audio/mp3"/>
+                Your browser does not support the audio tag.
+            </audio>
+        </div>
+
+        <div class="span-24">
+            <img src="media/imgs/under-construction.gif" alt="Under Construction" id="underConstructionImg">
+        </div>
     </div>
-
-    <button id="exportButton" type="button">Export it!</button>
-    <a id="downloadImageLink" hidden> Right click and 'Save Link as...' here! </a>
-
-    <audio id="songs" autoplay controls>
-        <source src="media/audio/woohu.mp3" type="audio/mp3" />
-        <source src="media/audio/Chumbawamba.mp3" type="audio/mp3" />
-        Your browser does not support the audio tag.
-    </audio>
-
-    <img src="media/imgs/under-construction.gif" alt="Under Construction" id="underConstructionImg">
-
 </body>
 </html>
