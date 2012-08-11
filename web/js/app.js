@@ -18,7 +18,7 @@ var createPlayerSVG = function() {
 };
 
 $(function () {
-    paper = Raphael('canvas_container', '598.28351', '904.6944');
+    paper = Raphael('canvas_container', '598.28351', '600');
     pitch = loadPitch(paper);
     optionsSet = paper.set();
     var paletteBorder = paper.rect(0,0,120,pitch.getBBox().height,10);
