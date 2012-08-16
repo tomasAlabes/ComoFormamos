@@ -58,8 +58,8 @@ var MyRaphaelUtils = {
             var canvasBBox = pitch.getBBox();
             var objectBBox = obj.getBBox();
             var objectPartiallyOutside = !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x, objectBBox.y2) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y) || !Raphael.isPointInsideBBox(canvasBBox, objectBBox.x2, objectBBox.y2);
-            var elementsUnderPoint = paper.getElementsByPoint(event.clientX, event.clientY);
-            var objectUnderObject = elementsUnderPoint.length > 2; // Me and canvas
+            //var elementsUnderPoint = paper.getElementsByPoint(event.clientX, event.clientY);
+            //var objectUnderObject = elementsUnderPoint.length > 2; // Me and canvas
             return !(objectPartiallyOutside/* || objectUnderObject*/);
         },
 
