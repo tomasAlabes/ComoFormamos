@@ -4,7 +4,7 @@ var MyRaphaelUtils = {
         this.ox = 0;
         this.oy = 0;
         // animate attributes to a "being dragged" state
-        this.animate({"opacity":.5}, 500);
+        this.animate({"opacity":0.5}, 500);
     },
 
     paletteStart:function () {
@@ -17,7 +17,7 @@ var MyRaphaelUtils = {
         optionsSet.push(newPaletteObj);
         MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(newPaletteObj);
 
-        this.animate({"opacity":.5}, 500);
+        this.animate({"opacity":0.5}, 500);
     },
 
     move: function (dx, dy) {

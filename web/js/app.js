@@ -3,7 +3,9 @@ var playerCounter = 0;
 var selectedTeamSize = 5;
 
 $(function () {
+    /*jslint newcap:false */ //This done for the Raphael use
     paper = Raphael('canvas_container', '598.28351', '600');
+    /*jslint newcap:true */
     pitch = loadPitch(paper);
     optionsSet = paper.set();
     var paletteBorder = paper.rect(0,0,120,pitch.getBBox().height,10);
@@ -26,7 +28,7 @@ $(function () {
         var imageTextTopMargin = 5;
         var playerOptionText = paper.text(65, paletteYOffset + image.getBBox().height + imageTextTopMargin, optionName);
         playerOptionText.attr({"font-size" : 17, "font-family" : 'Handlee', fill: "white"});
-        var optionSet = paper.set([image, playerOptionText]);
+        optionSet = paper.set([image, playerOptionText]);
         optionsSet.push(optionSet);
         MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(optionSet);
         i++;
@@ -185,7 +187,7 @@ $(function () {
     function removePlayer(playerId){
         var player = _.find(team.models, function(model){ //TODO use Collection getById() or get()
             var id = model.get("playerId");
-            return id == playerId;
+            return id === playerId;
         });
         team.remove(player);
     }
