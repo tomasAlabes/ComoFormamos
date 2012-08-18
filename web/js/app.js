@@ -136,6 +136,7 @@ $(function () {
             optionsSet.forEach(function(element){
                 element.hide();
             });
+            var brandText = paper.text(165, 200, "ComoFormamos.com").transform("S3R-90");
             var svg = $('#canvas_container').html();
 
             var canvas = document.createElement('canvas');
@@ -149,10 +150,25 @@ $(function () {
             //document.body.appendChild(canvas);
             canvg(canvas, svg);
             var imgData = canvas.toDataURL("image/png");
+            
+            var addresses = ""; //between the speech mark goes the receptient. Seperate addresses with a ;
+            var body = "1. Hace click derecho -> 'guardar como...' sobre la imagen y guardala donde quieras -> 2. Agregala como archivo adjunto a este mail -> 3. Compartila a tus amigos! No te olvides de avisar a que hora y donde se juntan!" //write the message text between the speech marks or put a variable in the place of the speech marks
+            var subject = "Asi vamos a formar en el partido!"; //between the speech marks goes the subject of the message
+            var href = "mailto:" + addresses + "?"
+                     + "subject=" + subject + "&"
+                     + "body=" + body;
+            var wndMail;
+            wndMail = window.open(href, "_blank", "scrollbars=yes,resizable=yes,width=500,height=500");
+            if(wndMail)
+            {
+                wndMail.close();    
+            }
+            
             window.location = imgData/*.replace("image/png", "image/octet-stream")*/;
             optionsSet.forEach(function(element){
                 element.show();
             });
+            brandText.remove();
         },
 
         pitchSizeChanged : function(){
