@@ -34,10 +34,7 @@ input, button {
   @include rounded-corners;
 }
 
-#underConstructionImg {
-  position: fixed;
-  right: 0px;
-  bottom: 0px;
-  width: 185px;
-  height: 130px;
+#socialLinks{
+  margin-left:46%;
+  margin-bottom: 35px;
 }

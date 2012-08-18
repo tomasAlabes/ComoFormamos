@@ -23,7 +23,8 @@ $(function () {
     paletteYOffset+= 80;
 
     for(var optionName in paletteOptions){
-        var image = paper.path(paletteOptions[optionName]).attr({"fill":"white"});
+        var paletteOption = paletteOptions[optionName];
+        var image = paper.path(paletteOption.path).attr({"fill":paletteOption.color});
         image.transform("S1.5T50," + paletteYOffset);
         var imageTextTopMargin = 5;
         var playerOptionText = paper.text(65, paletteYOffset + image.getBBox().height + imageTextTopMargin, optionName);
@@ -152,11 +153,11 @@ $(function () {
             var imgData = canvas.toDataURL("image/png");
             
             var addresses = ""; //between the speech mark goes the receptient. Seperate addresses with a ;
-            var body = "1. Hace click derecho -> 'guardar como...' sobre la imagen y guardala donde quieras -> 2. Agregala como archivo adjunto a este mail -> 3. Compartila a tus amigos! No te olvides de avisar a que hora y donde se juntan!" //write the message text between the speech marks or put a variable in the place of the speech marks
+            var body = "1. Hace click derecho -> 'guardar como...' sobre la imagen y guardala donde quieras -> 2. Agregala como archivo adjunto a este mail -> 3. Compartila a tus amigos! No te olvides de avisar a que hora y donde se juntan!"; //write the message text between the speech marks or put a variable in the place of the speech marks
             var subject = "Asi vamos a formar en el partido!"; //between the speech marks goes the subject of the message
-            var href = "mailto:" + addresses + "?"
-                     + "subject=" + subject + "&"
-                     + "body=" + body;
+            var href = "mailto:" + addresses + "?" +
+                     "subject=" + subject + "&" +
+                     "body=" + body;
             var wndMail;
             wndMail = window.open(href, "_blank", "scrollbars=yes,resizable=yes,width=500,height=500");
             if(wndMail)
