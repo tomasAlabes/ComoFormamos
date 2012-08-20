@@ -6,6 +6,14 @@
   -moz-border-radius: $radius;
 }
 
+@mixin title($size, $marginTop){
+  font-family: 'Handlee', cursive;
+  text-align: center;
+  color: white;
+  margin-top: $marginTop;
+  font-size: $size;
+}
+
 html, input, select, button {
   font-family: 'Handlee', cursive;
 }
@@ -15,11 +23,7 @@ html {
 }
 
 h1 {
-  font-family: 'Handlee', cursive;
-  text-align: center;
-  font-size: 50px;
-  color: white;
-  margin-top: 20px;
+  @include title(50px, 20px);
 }
 
 #players_panel {
@@ -37,4 +41,8 @@ input, button {
 #socialLinks{
   margin-left:46%;
   margin-bottom: 35px;
+}
+
+#webDescription{
+  @include title(20px, 10px);
 }
