@@ -37,6 +37,11 @@ var MyRaphaelUtils = {
     paletteUp: function(){
         if(!MyRaphaelUtils.isInsideCanvas(this)){
             this.remove();
+            $.pnotify({
+                title: 'Error!',
+                text: 'Tiraste al jugador afuera de la cancha!',
+                type: 'error'
+            });
         }else{
             //Giving the new D&D behaviour
             this.undrag();

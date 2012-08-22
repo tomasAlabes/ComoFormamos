@@ -75,9 +75,18 @@ $(function () {
         validate:function (attrs) {
             var number = attrs.number;
             if (number > 100) {
-                return "Number can't be greater than 100.";
+                $.pnotify({
+                    title: 'Error!',
+                    text: 'El numero maximo es 100',
+                    type: 'error'
+                });
+
             } else if (number < 1) {
-                return "Number must be grater than 0.";
+                $.pnotify({
+                    title: 'Error!',
+                    text: 'El numero no puede ser negativo ni cero!',
+                    type: 'error'
+                });
             }
         }
     });
@@ -217,6 +226,11 @@ $(function () {
             }else{
                 player.remove();
                 player.clear();
+                $.pnotify({
+                    title: 'Error!',
+                    text: 'Ya completaste tu equipo en la cancha! \n Agranda el tamaño del equipo.',
+                    type: 'error'
+                });
             }
         }
 
