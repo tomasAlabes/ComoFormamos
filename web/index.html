@@ -3,18 +3,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta itemprop="name" content="Como formamos?">
-    <meta itemprop="description" content="Arma la formación de tu equipo y compartila con amigos!">
+    <meta itemprop="description" content="Arma la formacion de tu equipo y compartila con amigos!">
 
-    <meta property="og:title" content="Como Formamos?" />
+    <meta property="og:title" content="Como Formamos" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://comoformamos.com" />
-    <meta property="og:image" content="" />
-    <meta property="og:site_name" content="Como Formamos?" />
+    <meta property="og:image" content="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/64/Sport-football-pitch-icon.png" />
+    <meta property="og:site_name" content="Como formamos" />
     <meta property="fb:admins" content="598301800" />
 
     <title>Como formamos? Armá y compartí el equipo del próximo partido!</title>
 
-    <link rel="shortcut icon" href="http://comoformamos.com/favicon.ico">
+    <link rel="shortcut icon" href="http://comoformamos.appspot.com/favicon.ico">
 
     <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
@@ -32,11 +32,11 @@
 
     <script type="text/javascript" src="vendors/rgbcolor.js"></script>
     <script type="text/javascript" src="vendors/canvg.js"></script>
-    <!--<script type="text/javascript" src="vendors/modernizr.js"></script>-->
-    <!--<script type="text/javascript" src="js/raphaelImgs/pitch.js"></script>-->
-    <!--<script type="text/javascript" src="js/raphaelImgs/options.js"></script>-->
-    <!--<script type="text/javascript" src="js/Utils.js"></script>-->
-    <!--<script type="text/javascript" src="js/app.js"></script>-->
+    <script type="text/javascript" src="vendors/modernizr.js"></script>
+    <script type="text/javascript" src="js/raphaelImgs/pitch.js"></script>
+    <script type="text/javascript" src="js/raphaelImgs/options.js"></script>
+    <script type="text/javascript" src="js/Utils.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 
     <script type="text/javascript" src="generated/ComoFormamos.min.js"></script>
 
@@ -60,6 +60,16 @@
 </head>
 
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <h1>Como formamos?</h1>
 <div id="allContainer" class="container">
 
@@ -67,8 +77,10 @@
         <p>Definí la formación que van a usar con tus amigos en el partido y después compartila para discutirla!</p>
     </div>
 
+    <a href="https://github.com/tomasAlabes/gaeComoFormamos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+
 <div id="socialLinks">
-    <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fcomoformamos.appspot.com&amp;send=false&amp;layout=standard&amp;width=300&amp;show_faces=true&amp;action=like&amp;colorscheme=dark&amp;font=tahoma&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:30px;" allowTransparency="true"></iframe>
+    <div class="fb-like" data-href="http://comoformamos.com" data-send="false" data-width="300" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
 
     <span class="g-plusone" data-annotation="inline" data-width="300"></span>
 
@@ -86,8 +98,6 @@
         s.parentNode.insertBefore(po, s);
     })();
 </script>
-
-
 
         <div id="editorContainer" class="span-24">
 
@@ -140,6 +150,8 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
         })();
     </script>
+
+    <div class="fb-comments prepend-4 span-20" data-href="http://comoformamos.com" data-num-posts="3" data-width="470" data-colorscheme="dark"></div>
 
     </div>
 </body>
