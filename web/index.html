@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/SoftwareApplication">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta itemprop="name" content="Como formamos?">
     <meta itemprop="description" content="Arma la formacion de tu equipo y compartila con amigos!">
 
-    <meta property="og:title" content="Como Formamos" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://comoformamos.com" />
-    <meta property="og:image" content="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/64/Sport-football-pitch-icon.png" />
-    <meta property="og:site_name" content="Como formamos" />
-    <meta property="fb:admins" content="598301800" />
+    <meta property="og:title" content="Como Formamos"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://comoformamos.com"/>
+    <meta property="og:image"
+          content="http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-7/64/Sport-football-pitch-icon.png"/>
+    <meta property="og:site_name" content="Como formamos"/>
+    <meta property="fb:admins" content="598301800"/>
 
     <title>Como formamos? Armá y compartí el equipo del próximo partido!</title>
 
@@ -19,31 +20,17 @@
     <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
     <!--[if lt IE 8]>
-        <link rel="stylesheet/css" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet/css" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/partials/_base.css">
 
-    <script type="text/javascript" src="vendors/jquery-1.7.js"></script>
-    <script type="text/javascript" src="vendors/underscore.js"></script>
-    <script type="text/javascript" src="vendors/backbone.js"></script>
-    <script type="text/javascript" src="vendors/raphael.js"></script>
-
-    <script type="text/javascript" src="vendors/jquery.pnotify.min.js"></script>
-    <link href="css/jquery.pnotify.default.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.pnotify.default.css" media="all" rel="stylesheet" type="text/css"/>
     <!-- Include this file if you are using Pines Icons. -->
-    <link href="css/jquery.pnotify.default.icons.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.pnotify.default.icons.css" media="all" rel="stylesheet" type="text/css"/>
 
-    <!--<script type="text/javascript" src="vendors/rgbcolor.js"></script>-->
-    <!--<script type="text/javascript" src="vendors/canvg.js"></script>-->
-    <!--<script type="text/javascript" src="vendors/modernizr.js"></script>-->
-    <!--<script type="text/javascript" src="js/raphaelImgs/pitch.js"></script>-->
-    <!--<script type="text/javascript" src="js/raphaelImgs/options.js"></script>-->
-    <!--<script type="text/javascript" src="js/Utils.js"></script>-->
-    <!--<script type="text/javascript" src="js/app.js"></script>-->
-
-    <script type="text/javascript" src="generated/ComoFormamos.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/lightview/lightview.css"/>
 
     <script type="text/javascript">
 
@@ -61,103 +48,131 @@
         })();
 
     </script>
-    
+
 </head>
 
 <body>
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);
+    js.id = id;
     js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <h1>Como formamos?</h1>
+
 <div id="allContainer" class="container">
 
     <div id="webDescription" class="span-24">
         <p>Definí la formación que van a usar con tus amigos en el partido y después compartila para discutirla!</p>
     </div>
 
-    <a href="https://github.com/tomasAlabes/gaeComoFormamos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+    <div id="socialLinks">
+        <div class="fb-like" data-href="http://comoformamos.com" data-send="false" data-width="300"
+             data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
 
-<div id="socialLinks">
-    <div class="fb-like" data-href="http://comoformamos.com" data-send="false" data-width="300" data-show-faces="true" data-colorscheme="dark" data-font="tahoma"></div>
+        <span class="g-plusone" data-annotation="inline" data-width="300"></span>
 
-    <span class="g-plusone" data-annotation="inline" data-width="300"></span>
+    </div>
 
-</div>
-
-<script type="text/javascript">
-    window.___gcfg = {lang:'es-419'};
-
-    (function () {
-        var po = document.createElement('script');
-        po.type = 'text/javascript';
-        po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(po, s);
-    })();
-</script>
-
-        <div id="editorContainer" class="span-24">
-
-            <div id="canvas_container" class="span-15"></div>
-
-            <div id="players_panel" class="span-8 last">
-
-                <div id="top" class="span-8">
-                    <label id="pitchTypeLabel" for="pitchType" class="span-7">
-                        Equipo
-                        <select id="pitchType" name="Equipo">
-                            <option value="5">5 jugadores</option>
-                            <option value="7">7 jugadores</option>
-                            <option value="9">9 jugadores</option>
-                            <option value="11">11 jugadores</option>
-                        </select>
-                    </label>
-                </div>
-
-                <div id="playersCreated" class="span-8">
-                    <script type="text/template" id="player-template">
-                        <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>"
-                                     class="playerName span-4">
-                        <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>"
-                                       class="playerNumber span-2" type="number">
-                        <img data-modelid="<%= playerId%>" class="deleteImg" src="media/imgs/delete.png" alt="Delete" height="16" width="16"/>
-                    </script>
-                </div>
-
-                <button id="exportButton" type="button">Enviá la formación a tus amigos!</button>
-            </div>
-        </div>
-
-        <!--<div id="song" class="prepend-15 span-8">-->
-            <!--<audio id="songs" controls>-->
-                <!--<source src="media/audio/woohu.mp3" type="audio/mp3"/>-->
-                <!--<source src="media/audio/Chumbawamba.mp3" type="audio/mp3"/>-->
-                <!--Your browser does not support the audio tag.-->
-            <!--</audio>-->
-        <!--</div>-->
-
-    <!-- Place this tag where you want the badge to render. -->
-    <div class="g-plus" data-height="69" data-href="//plus.google.com/117674961813976604003?rel=author" data-theme="dark"></div>
-
-    <!-- Place this tag after the last badge tag. -->
     <script type="text/javascript">
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        window.___gcfg = {lang:'es-419'};
+
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
             po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
         })();
     </script>
 
-    <div class="fb-comments prepend-4 span-20" data-href="http://comoformamos.com" data-num-posts="3" data-width="470" data-colorscheme="dark"></div>
+    <div id="editorContainer" class="span-24">
 
+        <div id="canvas_container" class="span-17"></div>
+
+        <div id="players_panel" class="span-6 last">
+
+            <div id="teamNameDiv" class="span-5">
+                <label id="teamNameLabel" for="teamName" class="span-6">
+                    Nombre del equipo <input id="teamName" placeholder="Mi equipo" class="span-6"/>
+                </label>
+            </div>
+            <!--<div id="top" class="span-6">-->
+                <!--<select id="pitchType" name="Equipo">-->
+                    <!--<option value="5">5 jugadores</option>-->
+                    <!--<option value="7">7 jugadores</option>-->
+                    <!--<option value="9">9 jugadores</option>-->
+                    <!--<option value="11">11 jugadores</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <h5 class="playersPanelTitle span-6">Jugadores creados</h5>
+
+            <div id="playersCreated" style="text-align: center;" class="span-6">
+                <script type="text/template" id="player-template">
+                        <input data-modelid="<%= playerId%>" id="name<%= playerId%>" value="<%= name%>"
+                               class="playerName span-4">
+                        <input data-modelid="<%= playerId%>" id="number<%= playerId%>" value="<%= number%>"
+                               class="playerNumber span-1" type="number">
+                        <img data-modelid="<%= playerId%>" class="deleteImg span-1 last" src="media/imgs/delete.png" alt="Delete"
+                            width="16" height="16" style="width:16px" />
+                </script>
+            </div>
+
+            <div id="bottomButtons" class="span-6">
+                <button id="downloadButton" type="button">Ver como imagen</button>
+                <button id="exportButton" type="button">Enviala a tus amigos!</button>
+            </div>
+        </div>
     </div>
+
+    <!-- Place this tag where you want the badge to render. -->
+    <div class="g-plus" data-height="69" data-href="//plus.google.com/117674961813976604003?rel=author"
+         data-theme="dark"></div>
+
+    <!-- Place this tag after the last badge tag. -->
+    <script type="text/javascript">
+        (function () {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <div class="fb-comments prepend-4 span-20" data-href="http://comoformamos.com" data-num-posts="15" data-width="470"
+         data-colorscheme="dark"></div>
+
+</div>
+
+<script type="text/javascript" src="vendors/jquery-1.7.js"></script>
+<script type="text/javascript" src="vendors/underscore.js"></script>
+<script type="text/javascript" src="vendors/backbone.js"></script>
+<script type="text/javascript" src="vendors/raphael.js"></script>
+<script type="text/javascript" src="vendors/rgbcolor.js"></script>
+<script type="text/javascript" src="vendors/canvg.js"></script>
+
+<script type="text/javascript" src="vendors/jquery.pnotify.min.js"></script>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="vendors/lightbox/excanvas/excanvas.js"></script>
+<![endif]-->
+<script type="text/javascript" src="vendors/lightbox/spinners/spinners.min.js"></script>
+<script type="text/javascript" src="vendors/lightbox/lightview/lightview.js"></script>
+
+<!--<script type="text/javascript" src="js/loader/options.js"></script>
+<script type="text/javascript" src="js/loader/editorLoader.js"></script>
+<script type="text/javascript" src="js/loader/dragFunctions.js"></script>
+<script type="text/javascript" src="js/app.js"></script>-->
+
+<script type="text/javascript" src="generated/ComoFormamos.min.js"></script>
+
 </body>
 </html>

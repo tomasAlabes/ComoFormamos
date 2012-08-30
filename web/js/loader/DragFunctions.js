@@ -1,4 +1,4 @@
-var MyRaphaelUtils = {
+var DragFunctions = {
     start:function () {
         // keep the relative coords at the start of the drag
         this.ox = 0;
@@ -15,7 +15,7 @@ var MyRaphaelUtils = {
         var newPaletteObj = this.clone();
         optionsSet.exclude(this);
         optionsSet.push(newPaletteObj);
-        MyRaphaelUtils.addDragAndDropCapabilityToPaletteOption(newPaletteObj);
+        DragFunctions.addDragAndDropCapabilityToPaletteOption(newPaletteObj);
 
         this.animate({"opacity":0.5}, 500);
     },
@@ -35,7 +35,7 @@ var MyRaphaelUtils = {
     },
 
     paletteUp: function(){
-        if(!MyRaphaelUtils.isInsideCanvas(this)){
+        if(!DragFunctions.isInsideCanvas(this)){
             this.remove();
             $.pnotify({
                 title: 'Error!',
@@ -45,14 +45,14 @@ var MyRaphaelUtils = {
         }else{
             //Giving the new D&D behaviour
             this.undrag();
-            MyRaphaelUtils.addDragAndDropCapabilityToSet(this);
+            DragFunctions.addDragAndDropCapabilityToSet(this);
             this.animate({"opacity":1}, 500);
             eve("playerDropped", this, this);
         }
     },
 
         up: function () {
-            if(!MyRaphaelUtils.isInsideCanvas(this)){
+            if(!DragFunctions.isInsideCanvas(this)){
                 this.animate({transform:'...T' + (-this.ox) + ',' + (-this.oy)}, 1000, "bounce");
             }
             this.animate({"opacity": 1}, 500);
