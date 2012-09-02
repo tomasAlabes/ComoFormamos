@@ -19,37 +19,27 @@ $(function () {
         },
 
         initialize:function () {
-
+            this.on("error", function(model, error){
+                $.pnotify({
+                    title: 'Error!',
+                    text: error,
+                    type: 'error'
+                });
+            });
         },
 
         validate:function (attrs) { //TODO entender este metodo para corregir el bug
             var number = attrs.number;
             if (number > 100) {
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'El numero maximo es 100',
-                    type: 'error'
-                });
-
-                return false;
+                return "El numero maximo es 100";
 
             } else if (number < 1) {
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'El numero no puede ser negativo ni cero!',
-                    type: 'error'
-                });
-                return false;
+                return 'El numero no puede ser negativo ni cero!';
             }
 
             var name = attrs.name;
             if(name === ""){
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'Tu jugador tiene q tener un nombre!',
-                    type: 'error'
-                });
-                return false;
+                return 'Tu jugador tiene q tener un nombre!';
             }
 
         }
@@ -62,6 +52,12 @@ $(function () {
 
         template:_.template($('#player-template').html()),
 
+        initialize:function () {
+            //_.bindAll(this, 'render');
+            this.model.on('change', this.render, this);
+            this.model.on('destroy', this.removePlayer);
+        },
+
         events:{
             "click .deleteImg" : "removePlayer",
             "change .playerName" : "updatePlayerName",
@@ -73,6 +69,7 @@ $(function () {
             modelViewMap[this.model.get("playerId")].remove();
             modelViewMap[this.model.get("playerId")] = null;
             team.remove(this.model);
+            this.model.remove();
         },
 
         updatePlayerName: function(evt){
@@ -85,11 +82,6 @@ $(function () {
             this.model.set({number: newNumber});
         },
 
-        initialize:function () {
-            //_.bindAll(this, 'render');
-            this.model.on('change', this.render);
-            this.model.on('destroy', this.removePlayer);
-        },
         render: function(){
             $(this.el).html(this.template(this.model.toJSON()));
             this.model.get("svgText").attr({text: this.model.get("name")});
@@ -99,20 +91,7 @@ $(function () {
     });
 
     var Team = Backbone.Collection.extend({
-        model: Player,
-
-        initialize: function(){
-            this.bind("add", function(evt){
-                if(this.length >= selectedTeamSize){
-                    $('#newPlayerButton').attr({disabled:"true"});
-                }
-            });
-            this.bind('remove', function (model) {
-                if (team.length < selectedTeamSize) {
-                    $('#newPlayerButton').removeAttr("disabled");
-                }
-            });
-        }
+        model: Player
     });
 
     var team = new Team();
@@ -175,7 +154,7 @@ $(function () {
         checkEmptyTeamName: function(){
             var teamName = $('#teamName').val();
             if(teamName === "" || teamName === "Mi equipo"){
-                var enteredValue = prompt("Tu equipo no tiene un nombre, no queres ponerle uno?") || "";
+                var enteredValue = prompt("Tu equipo no tiene un nombre, no queres ponerle uno?", "Mi equipo") || "";
                 $('#teamName').val(enteredValue); //TODO nicer prompt?
             }
         },
@@ -235,7 +214,7 @@ $(function () {
                 var backboneView = new PlayerView({model:playerModel});
                 $('#playersCreated').append(backboneView.render().el);
             }else{
-                player.remove();
+                player.destroy();
                 player.clear();
                 $.pnotify({
                     title: 'Error!',
@@ -253,11 +232,12 @@ $(function () {
             return id === playerId;
         });
         team.remove(player);
+        player.destroy();
     }
 
     function removeExistingPlayer(player){
         removePlayer(player.playerId);
-        player.remove();
+        player.destroy();
     }
 
     var app = new AppView();

@@ -1,4 +1,4 @@
-/*! ComoFormamos - v0.1.0 - 2012-08-30
+/*! ComoFormamos - v0.1.0 - 2012-09-02
 * http://comoformamos.appspot.com/
 * Copyright (c) 2012 Tomas Alabes; Licensed MIT */
 
@@ -187,7 +187,7 @@ var loadPalette = function(paper){
 
     var fishermanRaphaData = [{"stroke":"none","fill":"#000","path":"M-337.02-298.782c1.087,0,2.174,0,3.262,0c7.298-0.934,12.708-3.757,14.443-10.254 c-0.921-4.984-1.064-9.902-3.262-14.44c0.423-0.82,1.631-0.853,2.331-1.4c-0.358-1.758,0.566-2.227,0.465-3.727 c9.199-10.618,12.48-37.793,5.589-52.184c1.11-3.835,1.868-6.868,0.465-10.254c-0.046-2.376,1.709-2.949,1.865-5.124 c-0.212-2.425-2.194-3.086-3.262-4.658c0.609-9.131-4.629-15.342-3.727-23.763c0.605-5.667,2.399-10.163,2.796-17.705 c0.527-10,2.669-19.717,3.262-28.424c0.439-6.484,1.865-11.201-0.934-15.374c-10.846,0-20.957-0.42-28.887,3.262 c0.062,1.149,0.072,2.243-0.465,2.796c-2.539,0.566-5.247,0.964-6.523,2.793c0.615,4.368,5.898,2.161,8.854,3.262 c3.346,1.247,3.532,4.46,6.055,6.058c-0.16,8.252-0.859,14.082,0.469,21.898c-9.538,10.339-8.555,33.18-13.981,46.13 c-1.611-0.716-4.245-0.41-6.52-0.465c-5.632,3.831-0.889,20.71,0,28.887c-3.555,2.35-9.616,2.188-10.251,7.454 c-0.072,1.042-1.175-0.602-2.331,0c0.14,2.76-3.122,5.485-5.127,7.454c-9.014,8.874-21.279,17.63-31.681,26.562 c-8.001,6.868-15.7,13.223-23.763,20.033c-4.32,3.652-6.908,6.419-10.716,10.254c4.806-1.257,8.963-7.191,14.91-8.854 c-0.205-0.573-0.597-0.957-1.4-0.931c1.68-1.491,1.133,1.781,2.331,1.396c0-0.622,0-1.24,0-1.865 c4.248-3.359,8.804-6.416,13.512-9.316c0.171,0.791-0.363,0.879-0.933,0.931c0.189,1.159,2.134,0.355,1.398-0.931 c14.313-11.471,30.003-21.559,45.195-32.148c-14.831,8.776-30.485,20.762-45.195,31.217c-0.798,0.02-1.206-0.348-1.398-0.934 c0.236,0.368,0.14,3.187-1.396,0.934c-0.321,3.405-9.074,8.079-12.581,9.782c16.922-16.032,38.237-32.367,57.775-48.457 c-0.072,2.087,0.312,4.059,1.4,6.058c2.269,0.729,2.959,0.703,5.589,0.466c2.546-2.581,3.102-7.148,6.523-8.851 c1.693,6.81,3.997,13.411,7.92,20.033c3.252,5.488,8.838,10.339,2.796,15.378c1.048,3.197-0.781,6.781-2.796,8.385 c-0.075,2.796,2.562,2.923,1.4,5.592c-0.794,0.911-3.268,0.146-3.727,1.396c0.592,1.891,3.538,1.432,4.658,2.796 C-342.251-303.183-340.409-300.207-337.02-298.782z M-433.003-303.909c2.629-1.722,4.404-4.294,7.454-5.589 C-427.114-307.024-431.239-304.634-433.003-303.909","type":"path"}];
     var fishermanFigure = paper.add(fishermanRaphaData);
-    fishermanFigure.transform("S0.28R180T520,800");
+    fishermanFigure.transform("S0.25R180T520,800");
     var fishermanText = paper.text(140, paletteYOffset + fishermanFigure.getBBox().height + imageTextTopMargin + 8, "pescador");
     fishermanText.attr({"font-size" : 17, "font-family" : 'Handlee', fill: "white"});
     var fishermanSet = paper.set([fishermanFigure, fishermanText]);
@@ -240,37 +240,27 @@ $(function () {
         },
 
         initialize:function () {
-
+            this.on("error", function(model, error){
+                $.pnotify({
+                    title: 'Error!',
+                    text: error,
+                    type: 'error'
+                });
+            });
         },
 
         validate:function (attrs) { //TODO entender este metodo para corregir el bug
             var number = attrs.number;
             if (number > 100) {
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'El numero maximo es 100',
-                    type: 'error'
-                });
-
-                return false;
+                return "El numero maximo es 100";
 
             } else if (number < 1) {
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'El numero no puede ser negativo ni cero!',
-                    type: 'error'
-                });
-                return false;
+                return 'El numero no puede ser negativo ni cero!';
             }
 
             var name = attrs.name;
             if(name === ""){
-                $.pnotify({
-                    title: 'Error!',
-                    text: 'Tu jugador tiene q tener un nombre!',
-                    type: 'error'
-                });
-                return false;
+                return 'Tu jugador tiene q tener un nombre!';
             }
 
         }
@@ -283,6 +273,12 @@ $(function () {
 
         template:_.template($('#player-template').html()),
 
+        initialize:function () {
+            //_.bindAll(this, 'render');
+            this.model.on('change', this.render, this);
+            this.model.on('destroy', this.removePlayer);
+        },
+
         events:{
             "click .deleteImg" : "removePlayer",
             "change .playerName" : "updatePlayerName",
@@ -294,6 +290,7 @@ $(function () {
             modelViewMap[this.model.get("playerId")].remove();
             modelViewMap[this.model.get("playerId")] = null;
             team.remove(this.model);
+            this.model.remove();
         },
 
         updatePlayerName: function(evt){
@@ -306,11 +303,6 @@ $(function () {
             this.model.set({number: newNumber});
         },
 
-        initialize:function () {
-            //_.bindAll(this, 'render');
-            this.model.on('change', this.render);
-            this.model.on('destroy', this.removePlayer);
-        },
         render: function(){
             $(this.el).html(this.template(this.model.toJSON()));
             this.model.get("svgText").attr({text: this.model.get("name")});
@@ -320,20 +312,7 @@ $(function () {
     });
 
     var Team = Backbone.Collection.extend({
-        model: Player,
-
-        initialize: function(){
-            this.bind("add", function(evt){
-                if(this.length >= selectedTeamSize){
-                    $('#newPlayerButton').attr({disabled:"true"});
-                }
-            });
-            this.bind('remove', function (model) {
-                if (team.length < selectedTeamSize) {
-                    $('#newPlayerButton').removeAttr("disabled");
-                }
-            });
-        }
+        model: Player
     });
 
     var team = new Team();
@@ -396,7 +375,7 @@ $(function () {
         checkEmptyTeamName: function(){
             var teamName = $('#teamName').val();
             if(teamName === "" || teamName === "Mi equipo"){
-                var enteredValue = prompt("Tu equipo no tiene un nombre, no queres ponerle uno?") || "";
+                var enteredValue = prompt("Tu equipo no tiene un nombre, no queres ponerle uno?", "Mi equipo") || "";
                 $('#teamName').val(enteredValue); //TODO nicer prompt?
             }
         },
@@ -456,7 +435,7 @@ $(function () {
                 var backboneView = new PlayerView({model:playerModel});
                 $('#playersCreated').append(backboneView.render().el);
             }else{
-                player.remove();
+                player.destroy();
                 player.clear();
                 $.pnotify({
                     title: 'Error!',
@@ -474,11 +453,12 @@ $(function () {
             return id === playerId;
         });
         team.remove(player);
+        player.destroy();
     }
 
     function removeExistingPlayer(player){
         removePlayer(player.playerId);
-        player.remove();
+        player.destroy();
     }
 
     var app = new AppView();
