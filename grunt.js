@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 //    },
         concat:{
             dist:{
-                src:['<banner:meta.banner>', 'web/js/loader/options.js', 'web/js/loader/dragFunctions.js', 'web/js/loader/editorLoader.js', 'web/js/app.js'],
+                src:['<banner:meta.banner>','web/js/loader/options.js', 'web/js/loader/dragFunctions.js', 'web/js/loader/editorLoader.js', 'web/js/app.js'],
                 dest:'web/generated/ComoFormamos.js'
             }
         },

@@ -28,7 +28,7 @@ $(function () {
             });
         },
 
-        validate:function (attrs) { //TODO entender este metodo para corregir el bug
+        validate:function (attrs) {
             var number = attrs.number;
             if (number > 100) {
                 return "El numero maximo es 100";

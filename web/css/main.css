@@ -65,12 +65,6 @@ input[type="number"] {
 }
 
 /* line 66, ../sass/main.scss */
-#socialLinks {
-  margin-left: 46%;
-  margin-bottom: 35px;
-}
-
-/* line 71, ../sass/main.scss */
 #webDescription {
   font-family: 'Handlee', cursive;
   text-align: center;
@@ -79,12 +73,12 @@ input[type="number"] {
   font-size: 20px;
 }
 
-/* line 75, ../sass/main.scss */
+/* line 70, ../sass/main.scss */
 #bottomButtons {
   margin-top: 20px;
 }
 
-/* line 79, ../sass/main.scss */
+/* line 74, ../sass/main.scss */
 .playersPanelTitle {
   color: #ffffff;
   text-align: center;

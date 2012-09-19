@@ -1,4 +1,4 @@
-/*! ComoFormamos - v0.1.0 - 2012-09-02
+/*! ComoFormamos - v0.1.0 - 2012-09-18
 * http://comoformamos.appspot.com/
 * Copyright (c) 2012 Tomas Alabes; Licensed MIT */
 
@@ -249,7 +249,7 @@ $(function () {
             });
         },
 
-        validate:function (attrs) { //TODO entender este metodo para corregir el bug
+        validate:function (attrs) {
             var number = attrs.number;
             if (number > 100) {
                 return "El numero maximo es 100";
