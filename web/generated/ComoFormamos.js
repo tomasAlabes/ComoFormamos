@@ -1,4 +1,4 @@
-/*! ComoFormamos - v0.1.0 - 2012-09-18
+/*! ComoFormamos - v0.1.0 - 2012-09-20
 * http://comoformamos.appspot.com/
 * Copyright (c) 2012 Tomas Alabes; Licensed MIT */
 
@@ -435,8 +435,8 @@ $(function () {
                 var backboneView = new PlayerView({model:playerModel});
                 $('#playersCreated').append(backboneView.render().el);
             }else{
-                player.destroy();
-                player.clear();
+                //player.destroy();
+                player.remove();
                 $.pnotify({
                     title: 'Error!',
                     text: 'Más de 11 jugadores? A que vas a jugar??',
