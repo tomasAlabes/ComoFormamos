@@ -1,4 +1,4 @@
-gaeComoFormamos
+ComoFormamos
 ===============
 
-Como formamos GAE version: comoformamos.com
+http://tomasalabes.github.com/ComoFormamos/
